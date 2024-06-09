@@ -34,11 +34,13 @@ function App() {
 
   const copyPasswordToClipboard = () => {
     window.navigator.clipboard.writeText(password);
-    let copy = document.getElementsByTagName("button");
+    let copy = document.getElementById("copy");
+    copy.style.backgroundColor = "#f97316";
     copy.innerHTML = "copied";
+    passwordRef.current?.select();
   };
 
-  // const passwordRef = useRef(null);
+  const passwordRef = useRef(null);
 
   return (
     <>
@@ -54,11 +56,12 @@ function App() {
             className="outline-none w-full py-1 px-3 "
             placeholder="password"
             readOnly
-            // ref={passwordRef}
+            ref={passwordRef}
           />
           <button
             className="text-white bg-blue-700 outline-none px-3 py-0.5 shrink"
             onClick={copyPasswordToClipboard}
+            id="copy"
           >
             Copy
           </button>
